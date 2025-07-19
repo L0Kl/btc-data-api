@@ -1,0 +1,25 @@
+package com.example.model;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+import java.math.BigDecimal;
+import java.time.Instant;
+
+@Data
+@Entity
+public class Candle {
+
+    @Id @GeneratedValue
+    private Long id;
+
+    private Instant timestamp;
+
+    private BigDecimal open;
+
+    private BigDecimal close;
+
+    private BigDecimal high;
+
+    private BigDecimal low;
+}
