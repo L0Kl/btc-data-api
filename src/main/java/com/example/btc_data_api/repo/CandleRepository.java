@@ -1,7 +1,9 @@
-package com.example.repo;
+package com.example.btc_data_api.repo;
 
-import com.example.model.Candle;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.btc_data_api.model.Candle;
+
 import java.time.Instant;
 import java.util.List;
 

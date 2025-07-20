@@ -1,17 +1,19 @@
-package com.example.service;
+package com.example.btc_data_api.service;
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.core.ParameterizedTypeReference;
-//import org.springframework.stereotype.Service;
 
-import com.example.model.Candle;
+import com.example.btc_data_api.model.Candle;
+
+import org.springframework.core.ParameterizedTypeReference;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.time.Instant;
 
+@Service
 public class CoinbaseClient {
     private final WebClient wc = WebClient.builder()
             .baseUrl("https://api.exchange.coinbase.com")
@@ -31,6 +33,8 @@ public class CoinbaseClient {
             .map(candle -> {
                 Candle c = new Candle();
                 c.setTimestamp(Instant.ofEpochSecond(candle.get(0).longValue()));
+                c.setSymbol(productId);
+                c.setGranularity(String.valueOf(granularity));
                 c.setOpen(candle.get(3));
                 c.setHigh(candle.get(2));
                 c.setLow(candle.get(1));

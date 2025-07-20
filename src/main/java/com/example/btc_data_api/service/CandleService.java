@@ -1,9 +1,11 @@
-package com.example.service;
+package com.example.btc_data_api.service;
 
 import org.springframework.scheduling.annotation.Scheduled;
-import com.example.repo.CandleRepository;
+import org.springframework.stereotype.Service;
 
+import com.example.btc_data_api.repo.CandleRepository;
 
+@Service
 public class CandleService {
     private final CandleRepository candleRepository;
     private final CoinbaseClient coinbaseClient;
@@ -13,7 +15,7 @@ public class CandleService {
         this.coinbaseClient = coinbaseClient;
     }
 
-    @Scheduled(fixedRate = 60000) // Fetch candles every minute
+    @Scheduled(initialDelay = 0, fixedRate = 60000) // Fetch candles every minute
     public void fetchAndStoreCandles() {
         var list = coinbaseClient.fetch("BTC-USD", 60);
         candleRepository.saveAll(list);
