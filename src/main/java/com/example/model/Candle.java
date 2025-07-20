@@ -15,11 +15,7 @@ public class Candle {
 
     private Instant timestamp;
 
-    private BigDecimal open;
+    private String symbol;
 
-    private BigDecimal close;
-
-    private BigDecimal high;
-
-    private BigDecimal low;
+    private BigDecimal open, high, low, close, volume;
 }
